@@ -1,7 +1,7 @@
 {
-  "name": "@lc-cn/ts-dev-template",
-  "version": "1.0.0",
-  "description": "ts开发环境配置",
+  "name": "@lc-cn/command",
+  "version": "0.0.0",
+  "description": "指令的定义与执行",
   "main": "lib/index.js",
   "scripts": {
     "start": "node .",
@@ -12,19 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lc-cn/ts-dev-template.git"
+    "url": "git+https://github.com/lc-cn/command.git"
   },
   "keywords": [
     "ts",
-    "dev",
-    "template"
+    "command"
   ],
   "author": "凉菜",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lc-cn/ts-dev-template/issues"
+    "url": "https://github.com/lc-cn/command/issues"
   },
-  "homepage": "https://github.com/lc-cn/ts-dev-template#readme",
+  "homepage": "https://github.com/lc-cn/command#readme",
   "devDependencies": {
     "@types/node": "latest",
     "ts-node-dev": "latest",
