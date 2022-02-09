@@ -51,7 +51,8 @@ export class Command<A extends any[]=any[],O extends {}={}>{
     private _checkers: Command.Action<A, O>[] = []
     public _arguments: Declaration[]
     public _options: Argv.OptionDeclarationMap = {}
-
+    public parent:Command=null
+    public children:Command[]=[]
     private _namedOptions: Argv.OptionDeclarationMap = {}
     private _symbolicOptions: Argv.OptionDeclarationMap = {}
     constructor(public name: string, declaration: string, public description: string) {
@@ -252,6 +253,16 @@ export class Command<A extends any[]=any[],O extends {}={}>{
             if (result) return result
         }
     }
+    subcommand<D extends string>(def: D, config?: Command.Config): Command<Argv.ArgumentType<D>>
+    subcommand<D extends string>(def: D, desc: string, config?: Command.Config): Command<Argv.ArgumentType<D>>
+    subcommand(def: string, ...args: any[]) {
+        const desc = typeof args[0] === 'string' ? args.shift() as string : ''
+        const config = args[0] as Command.Config || {}
+        const command=defineCommand(def, desc, config)
+        command.parent=this
+        this.children.push(command)
+        return command
+    }
     private stringifyArg(value: any) {
         value = '' + value
         return value.includes(' ') ? `"${value}"` : value
@@ -284,7 +295,7 @@ export function defineCommand(def: string, ...args: [Command.Config?] | [string,
     const decl = def.slice(name.length)
     const command=new Command(name,decl,desc)
     if(config){
-        Object.assign(command.config, config)
+        Object.assign(command.config||{}, config)
     }
     return command
 }

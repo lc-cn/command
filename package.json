@@ -1,6 +1,6 @@
 {
   "name": "@lc-cn/command",
-  "version": "0.0.0",
+  "version": "0.1.4",
   "description": "指令的定义与执行",
   "main": "lib/index.js",
   "scripts": {
